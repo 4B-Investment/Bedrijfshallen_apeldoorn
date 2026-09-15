@@ -745,14 +745,50 @@ p.lede{ font-size: 1.15rem; color: var(--ink-soft); max-width: 56ch; }
     <span class="kicker">Interactieve plattegrond</span>
     <h2>Bekijk de indeling van de unit</h2>
     <p class="lede">Bekijk de plattegrond in 2D of schakel binnen de viewer naar de 3D-weergave om virtueel door de ruimte te lopen.</p>
-    <div class="figure" style="position:relative; width:100%; padding-top:56.25%; overflow:hidden; border-radius:.5rem;">
-      <iframe
-        src="https://floorplanner.com/designs/306085312/viewer"
-        title="Floorplanner - interactieve plattegrond"
-        loading="lazy"
-        allowfullscreen
-        style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;">
-      </iframe>
+    <style>
+      @keyframes fpArrowNudge {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(-5px); }
+      }
+      .fp-row { display: flex; align-items: flex-start; gap: .9rem; }
+      .fp-row .figure { flex: 1 1 auto; min-width: 0; margin: 0; }
+      .fp-hint {
+        flex: 0 0 auto;
+        width: 84px;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .35rem;
+        font-family: var(--font-mono, inherit);
+        font-size: .95rem;
+        font-weight: 700;
+        letter-spacing: .02em;
+        color: var(--ink-soft, #6b6f6c);
+        text-align: center;
+      }
+      .fp-hint svg { animation: fpArrowNudge 1.6s ease-in-out infinite; }
+      @media (max-width: 720px) {
+        .fp-hint { display: none; }
+      }
+    </style>
+    <div class="fp-row">
+      <div class="figure" style="position:relative; width:100%; padding-top:56.25%; overflow:hidden; border-radius:.5rem;">
+        <iframe
+          src="https://floorplanner.com/projects/187472659/viewer"
+          title="Floorplanner - interactieve plattegrond"
+          loading="lazy"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;">
+        </iframe>
+      </div>
+      <div class="fp-hint" aria-hidden="true">
+        <svg width="44" height="30" viewBox="0 0 44 30" fill="none">
+          <path d="M40 15 H6" stroke="#C4791E" stroke-width="3" stroke-linecap="round"/>
+          <path d="M16 6 L6 15 L16 24" stroke="#C4791E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span>3D</span>
+      </div>
     </div>
     <p class="fac-note" style="margin-top:.6rem;">Tip: klik in de viewer op de knop <strong>3D</strong> om de ruimte in 3D te bekijken.</p>
   </div>
@@ -1102,6 +1138,26 @@ if (heroVideo && soundToggle) {
     if (!heroVideo.muted) heroVideo.play().catch(() => {});
     updateSoundToggle();
   });
+
+  // Browsers blokkeren geluid-bij-laden altijd, maar staan geluid wél toe
+  // zodra de bezoeker ergens op de pagina heeft geklikt, gescrold of getikt.
+  // Zodra dat gebeurt (en de video nog gedempt is) zetten we het geluid aan.
+  function unmuteOnFirstInteraction(e) {
+    if (e && e.target && soundToggle.contains(e.target)) return;
+    if (heroVideo.muted) {
+      heroVideo.muted = false;
+      heroVideo.play().catch(() => {});
+      updateSoundToggle();
+    }
+    window.removeEventListener('click', unmuteOnFirstInteraction);
+    window.removeEventListener('scroll', unmuteOnFirstInteraction);
+    window.removeEventListener('touchstart', unmuteOnFirstInteraction);
+    window.removeEventListener('keydown', unmuteOnFirstInteraction);
+  }
+  window.addEventListener('click', unmuteOnFirstInteraction, { once: true });
+  window.addEventListener('scroll', unmuteOnFirstInteraction, { once: true, passive: true });
+  window.addEventListener('touchstart', unmuteOnFirstInteraction, { once: true, passive: true });
+  window.addEventListener('keydown', unmuteOnFirstInteraction, { once: true });
 
   updateSoundToggle();
 }
