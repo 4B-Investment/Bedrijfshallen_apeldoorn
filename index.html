@@ -571,6 +571,7 @@ p.lede{ font-size: 1.15rem; color: var(--ink-soft); max-width: 56ch; }
     <nav class="nav" id="siteNav">
       <a href="#aanbod">Aanbod</a>
       <a href="#faciliteiten">Faciliteiten</a>
+      <a href="#plattegrond">Plattegrond</a>
       <a href="#ruimtes">Type ruimte</a>
       <a href="#regio">Regio</a>
       <a href="#faq">FAQ</a>
@@ -706,7 +707,6 @@ p.lede{ font-size: 1.15rem; color: var(--ink-soft); max-width: 56ch; }
       <div class="fac-group" data-cat="techniek">
         <h3><svg class="fac-icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>Techniek &amp; energie</h3>
         <ul class="amenities amenities--single">
-          <li class="is-selected" data-label="Krachtstroom en elektrapunten"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Krachtstroom en elektrapunten</span></li>
           <li class="is-selected" data-label="Airco op begane grond en verdieping"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Airco op begane grond en verdieping</span></li>
           <li class="is-selected" data-label="6 zonnepanelen per unit"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>6 zonnepanelen per unit</span></li>
           <li class="is-selected" data-label="Vloerverwarming op de verdieping"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Vloerverwarming op de verdieping <span class="fac-note">(voorbereid, nog niet aangesloten)</span></span></li>
@@ -740,7 +740,25 @@ p.lede{ font-size: 1.15rem; color: var(--ink-soft); max-width: 56ch; }
   </div>
 </section>
 
-<section class="section" id="ruimtes">
+<section class="section" id="plattegrond">
+  <div class="wrap">
+    <span class="kicker">Interactieve plattegrond</span>
+    <h2>Bekijk de indeling van de unit</h2>
+    <p class="lede">Bekijk de plattegrond in 2D of schakel binnen de viewer naar de 3D-weergave om virtueel door de ruimte te lopen.</p>
+    <div class="figure" style="position:relative; width:100%; padding-top:56.25%; overflow:hidden; border-radius:.5rem;">
+      <iframe
+        src="https://floorplanner.com/designs/306085312/viewer"
+        title="Floorplanner - interactieve plattegrond"
+        loading="lazy"
+        allowfullscreen
+        style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;">
+      </iframe>
+    </div>
+    <p class="fac-note" style="margin-top:.6rem;">Tip: klik in de viewer op de knop <strong>3D</strong> om de ruimte in 3D te bekijken.</p>
+  </div>
+</section>
+
+<section class="section section--tint" id="ruimtes">
   <div class="wrap">
     <span class="kicker">Type ruimte</span>
     <h2>Vijf manieren om ruimte te winnen</h2>
@@ -765,7 +783,7 @@ p.lede{ font-size: 1.15rem; color: var(--ink-soft); max-width: 56ch; }
       <div class="theme-item" id="werkplaats-huren-apeldoorn">
         <div class="code">04</div>
         <h3>Werkplaats huren Apeldoorn</h3>
-        <p>Bedrijfsruimte met krachtstroom, voldoende elektrapunten en een stevige vloer voor installatie-, timmer- of onderhoudswerk. De bestemmingscategorie van onze locaties laat bedrijfsactiviteiten tot en met categorie 2 toe.</p>
+        <p>Bedrijfsruimte met voldoende elektrapunten en een stevige vloer voor installatie-, timmer- of onderhoudswerk. De bestemmingscategorie van onze locaties laat bedrijfsactiviteiten tot en met categorie 2 toe.</p>
       </div>
       <div class="theme-item">
         <div class="code">05</div>
